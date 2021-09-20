@@ -57,7 +57,7 @@ $baseURL = "$($Protocol)://127.0.0.1:$Port"
 $encodedCreds = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes("riot:$Password"))
 $auth = "Basic $encodedCreds"
 
-$Shards = Get-ChampionShards -BaseURL $baseURL -Auth $auth | Select-Object -Property lootId, count, itemDesc
+$Shards = Get-ChampionShards -BaseURL $baseURL -Auth $auth | Select-Object -Property lootId, count, itemDesc | Sort-Object -Property itemDesc
 
 foreach ($Shard in $Shards) {
   $Body = ConvertTo-Json @($Shard.lootId)
