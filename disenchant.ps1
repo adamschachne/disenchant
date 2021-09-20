@@ -49,7 +49,8 @@ $path = Join-Path -Path $leagueoflegends -ChildPath "lockfile"
 $lockfile = Get-Content -Path $path
 
 if ($null -eq $lockfile) {
-  Write-Host "lockfile not found or league of legends is not started"
+  Read-Host "lockfile not found or league of legends is not started"
+  Exit
 }
 
 $PName, $ProcId, $Port, $Password, $Protocol = $lockfile.Split(":")
