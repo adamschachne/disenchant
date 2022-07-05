@@ -25,7 +25,7 @@ function Disenchant {
     "Content-Type"  = "application/json"
   }
 
-  Invoke-WebRequest -Method Post -Uri "$BaseURL/lol-loot/v1/recipes/CHAMPION_RENTAL_disenchant/craft?repeat=$($Shard.count)" -Headers $Headers -Body $Body | Out-Null
+  Invoke-WebRequest -UseBasicParsing -Method Post -Uri "$BaseURL/lol-loot/v1/recipes/CHAMPION_RENTAL_disenchant/craft?repeat=$($Shard.count)" -Headers $Headers -Body $Body | Out-Null
 }
 
 function Get-ChampionShards {
@@ -37,7 +37,7 @@ function Get-ChampionShards {
     "Authorization" = $Auth
   }
 
-  $Response = Invoke-WebRequest -Method Get -Uri "$BaseURL/lol-loot/v1/player-loot" -Headers $Headers
+  $Response = Invoke-WebRequest -UseBasicParsing -Method Get -Uri "$BaseURL/lol-loot/v1/player-loot" -Headers $Headers
   $Data = ConvertFrom-Json $Response.Content
   return $Data | Where-Object { $_.disenchantLootName -eq "CURRENCY_champion" }
 }
